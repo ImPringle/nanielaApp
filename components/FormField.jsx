@@ -1,10 +1,6 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 
-import { Svg } from "react-native-svg";
-
-import Eye from "../assets/icons/eye-solid.svg";
-import EyeSlash from "../assets/icons/eye-slash-solid.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";

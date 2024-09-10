@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../../components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import FormField from "../../components/FormField";
 
 const SignIn = () => {
@@ -29,6 +29,9 @@ const SignIn = () => {
             <CustomButton
               title={"Iniciar Sesion"}
               containerStyles={"bg-primary w-full mt-5"}
+              handelPress={() => {
+                router.replace("/activity");
+              }}
             />
             <View className="flex flex-row mt-4">
               <Text className="">No tienes cuenta? </Text>
