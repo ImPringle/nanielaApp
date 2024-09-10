@@ -30,7 +30,7 @@ export default function App() {
             title={"Continuar"}
             containerStyles={"bg-primary w-full mt-5"}
             handelPress={() => {
-              router.push("/sign-in");
+              router.replace("/sign-in");
             }}
           />
         </View>
