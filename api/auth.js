@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_URL = "http://192.168.100.125:5000/api/auth";
+const API_URL = "http://localhost:5000/api/auth";
 
 export const registerUser = async (username, email, password) => {
   try {
@@ -19,13 +19,16 @@ export const registerUser = async (username, email, password) => {
 
 export const loginUser = async (username, password) => {
   try {
-    console.log(username, password);
+    // console.log(username, password);
     const response = await axios.post(`${API_URL}/login`, {
       username,
       password,
     });
-    const { token } = response.data;
+    const { token, user } = response.data;
+    console.log(response);
     await AsyncStorage.setItem("token", token);
+    await AsyncStorage.setItem("user_id", user._id);
+    // console.log(AsyncStorage);
     return response.data;
   } catch (error) {
     console.error("Login error:", error.response.data.message);
@@ -35,6 +38,7 @@ export const loginUser = async (username, password) => {
 export const logoutUser = async () => {
   try {
     await AsyncStorage.removeItem("token");
+    console.log("Logged out");
   } catch (error) {
     console.error("Logout error:", error);
   }

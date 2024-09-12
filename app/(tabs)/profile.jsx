@@ -4,6 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import CustomButton from "../../components/CustomButton";
+import { logoutUser } from "../../api/auth";
+import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Profile = () => {
   return (
@@ -46,6 +49,10 @@ const Profile = () => {
             title={"Cerrar Sesion"}
             containerStyles={"bg-white w-full"}
             textStyles={"text-red-500"}
+            handelPress={() => {
+              logoutUser;
+              router.replace("/");
+            }}
           />
         </View>
       </ScrollView>

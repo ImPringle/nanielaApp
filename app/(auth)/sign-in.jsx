@@ -11,7 +11,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    console.log("handlelogin" + username + " - " + password);
+    // console.log("handlelogin" + username + " - " + password);
     const response = await loginUser(username, password);
     if (response) {
       console.log("Login succesful");
