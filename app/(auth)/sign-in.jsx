@@ -4,16 +4,20 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from "expo-router";
 import FormField from "../../components/FormField";
+import { loginUser } from "../../api/auth";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
+    console.log("handlelogin" + username + " - " + password);
     const response = await loginUser(username, password);
     if (response) {
       console.log("Login succesful");
-      router.replace("/sign-in");
+      router.replace("/activity");
+    } else {
+      console.log("Error de login");
     }
   };
 
@@ -29,20 +33,27 @@ const SignIn = () => {
 
           <View className="flex flex-col justify-center w-full">
             <Text className="font-bold text-2xl">Iniciar Sesion</Text>
-            <FormField title={"Username"} otherStyles={""} />
+            <FormField
+              title={"Username"}
+              otherStyles={""}
+              handleChangeText={setUsername}
+            />
             <FormField
               title={"Password"}
               otherStyles={"mt-2"}
               isPassword={true}
+              handleChangeText={setPassword}
             />
           </View>
           <View className="w-full flex flex-col items-center">
+            <Text>
+              {password}
+              {username}
+            </Text>
             <CustomButton
               title={"Iniciar Sesion"}
               containerStyles={"bg-primary w-full mt-5"}
-              handelPress={() => {
-                router.replace("/activity");
-              }}
+              handelPress={handleLogin}
             />
             <View className="flex flex-row mt-4">
               <Text className="">No tienes cuenta? </Text>
