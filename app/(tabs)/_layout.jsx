@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs } from "expo-router";
 import {
   faUser,
@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { fetchUserInfo } from "../../utils/auth";
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
@@ -26,6 +27,20 @@ const TabIcon = ({ icon, color, name, focused }) => {
 };
 
 const TabsLayout = () => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const userData = await fetchUserInfo();
+        setUser(userData);
+        console.log(userData);
+        console.log(user);
+      } catch (error) {
+        console.error("Failed to fetch user info:", error);
+      }
+    };
+    getUserInfo();
+  }, []);
   return (
     <>
       <Tabs
@@ -103,6 +118,7 @@ const TabsLayout = () => {
         />
         <Tabs.Screen
           name="profile"
+          initialParams={{ user: user }}
           options={{
             title: "Profile",
             headerShown: false,
