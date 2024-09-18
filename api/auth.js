@@ -27,7 +27,7 @@ export const loginUser = async (username, password) => {
     const { token, user } = response.data;
     console.log(response);
     await AsyncStorage.setItem("token", token);
-    await AsyncStorage.setItem("user_id", user._id);
+    await AsyncStorage.setItem("user", JSON.stringify(user));
     // console.log(AsyncStorage);
     return response.data;
   } catch (error) {

@@ -6,9 +6,26 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import CustomButton from "../../components/CustomButton";
 import { logoutUser } from "../../api/auth";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Profile = ({}) => {
-  // const user = route.params?.user;
+  const [userId, setUserId] = useState("");
+  const fetchUser = async () => {
+    try {
+      const value = await AsyncStorage.getItem("user");
+      if (value !== null) {
+        console.log("USER:", value);
+        const parsedValue = JSON.parse(value);
+        setUserId(parsedValue);
+      }
+    } catch (error) {
+      console.log("error fetching user: " + error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <SafeAreaView edges={["right", "left", "top", "bottom"]} className="p-5">
@@ -30,14 +47,14 @@ const Profile = ({}) => {
             <View className="w-full flex flex-row justify-between my-2">
               <Text className="font-bold text-xl">Nombre:</Text>
 
-              <Text className="text-xl text-gray-500">{}</Text>
+              <Text className="text-xl text-gray-500">{userId.username}</Text>
 
               {/* <Text className="text-xl text-gray-500">{user.username}</Text> */}
             </View>
 
             <View className="w-full flex flex-row justify-between my-2">
               <Text className="font-bold text-xl">Correo:</Text>
-              <Text className="text-xl text-gray-500">{}</Text>
+              <Text className="text-xl text-gray-500">{userId.email}</Text>
             </View>
             <View className="w-full flex flex-row justify-between my-2">
               <Text className="font-bold text-xl">Permisos:</Text>
