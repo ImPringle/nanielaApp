@@ -57,15 +57,15 @@ const TabsLayout = () => {
         }}
       >
         <Tabs.Screen
-          name="activity"
+          name="maintenance"
           options={{
-            title: "Activity",
+            title: "Maintenance",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={faBell}
+                icon={faScrewdriverWrench}
                 color={color}
-                name={"Activity"}
+                name={"Maintenance"}
                 focused={focused}
               />
             ),
@@ -102,15 +102,15 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="maintenance"
+          name="activity"
           options={{
-            title: "Maintenance",
+            title: "Activity",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={faScrewdriverWrench}
+                icon={faBell}
                 color={color}
-                name={"Maintenance"}
+                name={"Activity"}
                 focused={focused}
               />
             ),
