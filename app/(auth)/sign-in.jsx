@@ -46,10 +46,6 @@ const SignIn = () => {
             />
           </View>
           <View className="w-full flex flex-col items-center">
-            <Text>
-              {password}
-              {username}
-            </Text>
             <CustomButton
               title={"Iniciar Sesion"}
               containerStyles={"bg-primary w-full mt-5"}

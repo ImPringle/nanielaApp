@@ -5,6 +5,7 @@ import FormField from "../../components/FormField";
 import { Picker } from "@react-native-picker/picker";
 import CustomButton from "../../components/CustomButton";
 import { postMaintenance } from "../../api/maintenance";
+import { postNotification } from "../../api/notification";
 
 const Maintenance = () => {
   const [machineValue, setMachineValue] = useState("Seleccionar");
@@ -23,8 +24,10 @@ const Maintenance = () => {
       machineValue,
       machineNumber,
       typeValue,
-      actionValue
+      actionValue,
+      "pending"
     );
+
     console.log(
       machineValue +
         " | " +
@@ -36,6 +39,17 @@ const Maintenance = () => {
     );
     if (response) {
       console.log("Mantenimiento posteado");
+      const title =
+        machineValue + " #" + machineNumber + " (" + typeValue + ")";
+      const message =
+        "Se requiere " +
+        actionValue +
+        " en " +
+        machineValue +
+        " #" +
+        machineNumber;
+      const status = "pending";
+      postNotification(title, message, status);
     } else {
       console.log("Error al postear mantenimiento");
     }
