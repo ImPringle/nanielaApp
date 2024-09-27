@@ -1,34 +1,30 @@
 import { Text, ScrollView, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack, useLocalSearchParams } from "expo-router";
-import { completeIssue } from "../../api/maintenance";
-import { postNotification } from "../../api/notification";
+import { Stack, router, useLocalSearchParams } from "expo-router";
 import CustomButton from "../../components/CustomButton";
+import { completeTask } from "../../api/task";
 
-const NotificationDetail = () => {
+const TaskDetails = () => {
   const { id } = useLocalSearchParams();
 
   const handleComplete = async () => {
-    const response = await completeIssue(id);
+    const response = await completeTask(id);
     if (response) {
-      console.log("issue completed");
-      postNotification(id, "terminado", "completed");
+      console.log("task completed");
       router.back();
     } else {
-      console.log("issue not completed");
+      console.log("task not completed");
     }
   };
 
   return (
     <SafeAreaView edges={["right", "left"]} className="">
       <Stack.Screen
-        options={{ headerTitle: `${id}`, headerBackTitle: "Atras" }}
+        options={{ headerTitle: `Detalles de tarea`, headerBackTitle: "Atras" }}
       />
       <ScrollView contentContainerStyle={{ height: "100%" }} className="">
         <View className="p-5">
-          <Text className="font-bold text-3xl mb-1 m-5"> {id}</Text>
-
           <CustomButton
             title={"Completar"}
             containerStyles={"bg-primary w-full mt-5"}
@@ -40,4 +36,4 @@ const NotificationDetail = () => {
   );
 };
 
-export default NotificationDetail;
+export default TaskDetails;

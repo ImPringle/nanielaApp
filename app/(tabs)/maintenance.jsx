@@ -21,65 +21,33 @@ const Maintenance = () => {
   const [actionModalVisible, setActionModalVisible] = useState(false);
 
   const createMaintenance = async () => {
-    const response = null;
-    if (other == "") {
-      console.log("se envio un mantenimiento con other");
-      response = await postMaintenance(
+    try {
+      const action = other == "" ? actionValue : other;
+      const response = await postMaintenance(
         machineValue,
         machineNumber,
         typeValue,
-        actionValue,
+        action,
         "pending"
       );
-    } else {
-      console.log("se envio un mantenimiento con action");
-
-      response = await postMaintenance(
-        machineValue,
-        machineNumber,
-        typeValue,
-        other,
-        "pending"
-      );
-    }
-
-    console.log(
-      machineValue +
-        " | " +
-        machineNumber +
-        " | " +
-        typeValue +
-        " | " +
-        actionValue
-    );
-    if (response) {
-      console.log("Mantenimiento posteado");
       const title =
         machineValue + " #" + machineNumber + " (" + typeValue + ")";
-      const message = "";
-
-      if (other == "") {
-        message =
-          "Se requiere " +
-          actionValue +
-          " en " +
-          machineValue +
-          " #" +
-          machineNumber;
-      } else {
-        message =
-          "Se requiere " + other + " en " + machineValue + " #" + machineNumber;
-      }
+      const message = "Se requiere realizar " + action;
       const status = "pending";
-      postNotification(title, message, status);
-    } else {
-      console.log("Error al postear mantenimiento");
+      if (response) {
+        postNotification(title, message, status);
+        console.log("noti posted");
+      } else {
+        console.log("noti not posted");
+      }
+    } catch (error) {
+      console.log("Error posting new maintenance:", error);
     }
   };
 
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
-      <Text className="font-bold text-3xl mb-1">Maintenance</Text>
+      <Text className="font-bold text-3xl mb-1">Mantenimiento</Text>
       <ScrollView contentContainerStyle={{ height: "100%" }} className="">
         <View className="space-y-2 mb-2">
           <Text className="text-base text-gray-400 font-bold">Maquina</Text>

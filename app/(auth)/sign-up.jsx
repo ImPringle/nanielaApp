@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../../components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import FormField from "../../components/FormField";
 import { loginUser, registerUser } from "../../api/auth";
 
@@ -26,7 +26,7 @@ const SignUp = () => {
     if (password == passwordC) {
       const response = await registerUser(username, email, password);
       if (response) {
-        console.log("User registered succesfully");
+        console.log("User registered succesfullys");
         router.replace("/sign-in");
       } else {
         console.log("Error de register");

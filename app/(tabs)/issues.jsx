@@ -1,55 +1,84 @@
-import { View, Text, ScrollView, RefreshControl } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import IssueCard from "../../components/IssueCard";
 import { getPendingMantainances } from "../../api/maintenance";
+import { getTasks } from "../../api/task";
+import ActivityCard from "../../components/ActivityCard";
+import { router } from "expo-router";
 
 const Issues = () => {
   const [refreshing, setRefreshing] = useState(false);
-  const [mainData, setMainData] = useState([]);
-  const fetchMaintenances = async () => {
-    const response = getPendingMantainances();
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    const response = getTasks();
     if (response) {
-      console.log("mantenimientos fetcheados correctamente");
+      console.log("tasks fetched successfully");
       const data = await response;
-
-      // console.log(data);
-
-      setMainData(data);
+      setData(data);
     } else {
-      console.log("error al fetchear los mantenimientos");
+      console.log("error fetching tasks");
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const renderDataItem = ({ item }) => (
+    // <View>
+    //   <Text>{item.title}</Text>
+    // </View>
+    <ActivityCard
+      title={item.title}
+      message={item.message}
+      status={item.status}
+      date={item.createdAt}
+      handlePress={() => {
+        router.push(`/issues/${item._id}`);
+      }}
+    />
+  );
+
+  // -------------------
+
   const onRefresh = async () => {
     setRefreshing(true);
-    await fetchMaintenances();
+    await fetchData();
     setRefreshing(false);
   };
 
-  useEffect(() => {
-    fetchMaintenances();
-    // console.log("DATA:", mainData);
-  }, []);
-
-  useEffect(() => {
-    console.log("Updated maindata:", mainData); // This will log the mainData after the state has been updated
-  }, [mainData]);
-
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
-      <Text className="font-bold text-3xl mb-1">Issues</Text>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        contentContainerStyle={{ height: "100%" }}
-        className=""
-      >
-        {mainData.map((item) => (
-          <IssueCard key={item._id} issue={item} />
-        ))}
-      </ScrollView>
+      <View className="flex flex-row justify-between items-center mb-1">
+        <Text className="font-bold text-3xl ">Tareas</Text>
+        <TouchableOpacity
+          onPress={() => {
+            router.push("/issues/newTask");
+          }}
+        >
+          <Text className="text-3xl text-primary">+</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View className="h-full ">
+        <FlatList
+          data={data}
+          renderItem={renderDataItem}
+          keyExtractor={(item) => item._id}
+          showsVerticalScrollIndicator={false}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      </View>
     </SafeAreaView>
   );
 };

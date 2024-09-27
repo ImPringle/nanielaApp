@@ -36,7 +36,7 @@ const Activity = () => {
 
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
-      <Text className="font-bold text-3xl mb-1">Activity</Text>
+      <Text className="font-bold text-3xl mb-1">Actividad</Text>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -51,7 +51,9 @@ const Activity = () => {
               title={item.title}
               message={item.message}
               status={item.status}
-              handlePress={() => {}}
+              handlePress={() => {
+                router.push(`/activity/${item._id}`);
+              }}
               date={item.createdAt}
             />
           ))}
