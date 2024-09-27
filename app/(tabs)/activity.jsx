@@ -1,37 +1,60 @@
-import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import { View, Text, ScrollView, RefreshControl } from "react-native";
+import React, { useEffect, useState } from "react";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import ActivityCard from "../../components/ActivityCard";
 import { router } from "expo-router";
+import { getNotifications } from "../../api/notification";
 
 const Activity = () => {
+  const [refreshing, setRefreshing] = useState(false);
+  const [activityData, setActivityData] = useState([]);
+  const fetchNotifications = async () => {
+    const response = getNotifications();
+    if (response) {
+      console.log("notifications fetcheados correctamente");
+      const data = await response;
+      setActivityData(data);
+    } else {
+      console.log("error al fetchear notifications");
+    }
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchNotifications();
+    setRefreshing(false);
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  useEffect(() => {
+    console.log("Updated activData:", activityData);
+  }, [activityData]);
+
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
       <Text className="font-bold text-3xl mb-1">Activity</Text>
-      <ScrollView contentContainerStyle={{ height: "100%" }} className="">
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        contentContainerStyle={{ height: "100%" }}
+        className=""
+      >
         <View className="flex flex-col">
-          <ActivityCard
-            title={"Maquina #3"}
-            icon={"alert"}
-            message={"Se requiere hacer mantenimiento"}
-            status={"pending"}
-            handlePress={() => {
-              router.push("/activity/1");
-            }}
-          />
-          <ActivityCard
-            title={"Maquina #2"}
-            icon={"reminder"}
-            message={"Aun no se ha hecho el mantenimiento"}
-            status={"pending"}
-          />
-          <ActivityCard
-            title={"Impresora #1"}
-            icon={"check"}
-            message={"Se realizo mantenimiento"}
-            status={"done"}
-          />
+          {activityData.map((item) => (
+            <ActivityCard
+              key={item._id}
+              title={item.title}
+              message={item.message}
+              status={item.status}
+              handlePress={() => {}}
+              date={item.createdAt}
+            />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

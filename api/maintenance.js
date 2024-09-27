@@ -43,3 +43,15 @@ export const getPendingMantainances = async () => {
     );
   }
 };
+
+export const getMaintenanceById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/get/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching pending issues:",
+      error.response.data.message
+    );
+  }
+};
