@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from "expo-router";
 import FormField from "../../components/FormField";
-import { loginUser, registerUser } from "../../api/auth";
+import { registerUser } from "../../api/auth";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -24,7 +24,7 @@ const SignUp = () => {
         passwordC
     );
     if (password == passwordC) {
-      const response = await registerUser(username, email, password);
+      const response = await registerUser(username, email, password, "admin");
       if (response) {
         console.log("User registered succesfullys");
         router.replace("/sign-in");

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { LOCALHOST } from "@env";
 
-const API_URL = "http://localhost:5001/api/tasks";
+const API_URL = `http://${LOCALHOST}:5001/api/tasks`;
 
 export const getTasks = async () => {
   try {

@@ -11,6 +11,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../components/CustomButton";
 import { router } from "expo-router";
+import { LOCALHOST } from "@env";
+
+console.log(LOCALHOST);
 
 export default function App() {
   return (
@@ -25,7 +28,7 @@ export default function App() {
             resizeMode="contain"
           />
           <Text className="font-bold text-3xl">QR Service</Text>
-          <Text className="font-bold text-xl text-gray-500">Bienvenido!</Text>
+          <Text className="font-bold text-xl text-gray-500">¡Bienvenido!</Text>
           <CustomButton
             title={"Continuar"}
             containerStyles={"bg-primary w-full mt-5"}

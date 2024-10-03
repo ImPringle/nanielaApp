@@ -1,14 +1,16 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LOCALHOST } from "@env";
 
-const API_URL = "http://localhost:5001/api/auth";
+const API_URL = `http://${LOCALHOST}:5001/api/auth`;
 
-export const registerUser = async (username, email, password) => {
+export const registerUser = async (username, email, password, role) => {
   try {
     const response = await axios.post(`${API_URL}/register`, {
       username,
       email,
       password,
+      role,
     });
     return response.data;
   } catch (error) {

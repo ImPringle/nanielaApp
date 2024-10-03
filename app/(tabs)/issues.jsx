@@ -34,9 +34,6 @@ const Issues = () => {
   }, []);
 
   const renderDataItem = ({ item }) => (
-    // <View>
-    //   <Text>{item.title}</Text>
-    // </View>
     <ActivityCard
       title={item.title}
       message={item.message}

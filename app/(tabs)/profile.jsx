@@ -58,7 +58,7 @@ const Profile = ({}) => {
             </View>
             <View className="w-full flex flex-row justify-between my-2">
               <Text className="font-bold text-xl">Permisos:</Text>
-              <Text className="text-xl text-gray-500">Admin</Text>
+              <Text className="text-xl text-gray-500">{userId.role}</Text>
             </View>
           </View>
 

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { LOCALHOST } from "@env";
 
-const API_URL = "http://localhost:5001/api/maintenance";
+const API_URL = `http://${LOCALHOST}:5001/api/maintenance`;
 
 export const completeIssue = async (id) => {
   try {
@@ -47,6 +48,18 @@ export const getPendingMantainances = async () => {
 export const getMaintenanceById = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/get/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching pending issues:",
+      error.response.data.message
+    );
+  }
+};
+
+export const getMaintenanceByUrl = async (url) => {
+  try {
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     console.error(
