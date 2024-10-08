@@ -40,7 +40,7 @@ const Profile = ({}) => {
           <View className="">
             <View className="flex items-center">
               <Image
-                source={require("../../assets/images/capybara.jpg")}
+                source={require("../../assets/images/logo.png")}
                 className="w-[160px] h-[160px] rounded-full border-4 border-white "
               />
             </View>
