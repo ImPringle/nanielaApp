@@ -49,23 +49,23 @@ const SignUp = () => {
           <View className="flex flex-col justify-center w-full">
             <Text className="font-bold text-2xl">Registrar</Text>
             <FormField
-              title={"Username"}
+              title={"Nombre de usuario"}
               otherStyles={""}
               handleChangeText={setUsername}
             />
             <FormField
-              title={"Email"}
+              title={"E-mail"}
               otherStyles={"mt-2"}
               handleChangeText={setEmail}
             />
             <FormField
-              title={"Password"}
+              title={"Contraseña"}
               otherStyles={"mt-2"}
               isPassword={true}
               handleChangeText={setPassword}
             />
             <FormField
-              title={"Confirm password"}
+              title={"Confirmar contraseña"}
               otherStyles={"mt-2"}
               isPassword={true}
               handleChangeText={setPasswordC}

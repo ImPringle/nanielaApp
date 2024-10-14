@@ -55,20 +55,24 @@ const Scanner = () => {
   }
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
-      <Text className="font-bold text-3xl mb-1">Escaner QR</Text>
-      <TouchableOpacity
-        onPress={() => {
-          if (camActive) {
-            setCamActive(false);
-          } else {
-            setCamActive(true);
-          }
-        }}
-      >
-        <Text>Stop</Text>
-      </TouchableOpacity>
+      <View className=" flex flex-row justify-between items-center">
+        <Text className="font-bold text-3xl mb-1">Escaner QR</Text>
+        <TouchableOpacity
+          onPress={() => {
+            if (camActive) {
+              setCamActive(false);
+            } else {
+              setCamActive(true);
+            }
+          }}
+        >
+          <Text className="text-xl text-primary">
+            {camActive ? "Apagar" : "Encender"}
+          </Text>
+        </TouchableOpacity>
+      </View>
       {!camActive ? (
-        <Text>Cam not active</Text>
+        <Text>Camara no disponible</Text>
       ) : (
         <CameraView
           className=" h-full w-full"

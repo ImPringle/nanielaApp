@@ -15,9 +15,11 @@ import { fetchUserInfo } from "../../utils/auth";
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
     <View className="items-center justify-center gap-2">
-      <FontAwesomeIcon icon={icon} size={30} color={color} />
+      <FontAwesomeIcon icon={icon} size={25} color={color} />
       <Text
-        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+        className={`${
+          focused ? "font-psemibold" : "font-pregular"
+        } text-[10px]`}
         style={{ color: color }}
       >
         {name}
@@ -65,22 +67,22 @@ const TabsLayout = () => {
               <TabIcon
                 icon={faScrewdriverWrench}
                 color={color}
-                name={"Maintenance"}
+                name={"Mantenimientos"}
                 focused={focused}
               />
             ),
           }}
         />
         <Tabs.Screen
-          name="issues"
+          name="activity"
           options={{
-            title: "Issues",
+            title: "Activity",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={faExclamationTriangle}
+                icon={faBell}
                 color={color}
-                name={"Issues"}
+                name={"Actividad"}
                 focused={focused}
               />
             ),
@@ -102,15 +104,15 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="activity"
+          name="issues"
           options={{
-            title: "Activity",
+            title: "Issues",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={faBell}
+                icon={faExclamationTriangle}
                 color={color}
-                name={"Activity"}
+                name={"Tareas"}
                 focused={focused}
               />
             ),
@@ -126,7 +128,7 @@ const TabsLayout = () => {
               <TabIcon
                 icon={faUser}
                 color={color}
-                name={"Profile"}
+                name={"Perfil"}
                 focused={focused}
               />
             ),

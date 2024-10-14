@@ -197,15 +197,13 @@ const Maintenance = () => {
             handleChangeText={setOther}
           />
         ) : (
-          <View className="space-y-2 mb-2">
-            <Text className="text-base text-gray-400 font-bold">
-              Describa la accion
-            </Text>
-
-            <View className="w-full h-16 px-4 bg-black-100 border-gray-400 border-2 rounded-2xl focus:border-secondary items-center flex-row">
-              <Text className="text-gray-400 font-p-semibold text-base"></Text>
-            </View>
-          </View>
+          <FormField
+            title={"Describe la accion"}
+            otherStyles={"mb-2"}
+            value={other}
+            placeholder={other}
+            handleChangeText={setOther}
+          />
         );
       case "Button":
         return (

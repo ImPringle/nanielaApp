@@ -34,12 +34,12 @@ const SignIn = () => {
           <View className="flex flex-col justify-center w-full">
             <Text className="font-bold text-2xl">Iniciar Sesion</Text>
             <FormField
-              title={"Username"}
+              title={"Nombre de usuario"}
               otherStyles={""}
               handleChangeText={setUsername}
             />
             <FormField
-              title={"Password"}
+              title={"Contraseña"}
               otherStyles={"mt-2"}
               isPassword={true}
               handleChangeText={setPassword}

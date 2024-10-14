@@ -33,13 +33,13 @@ const NewTask = () => {
         <View className="flex flex-1 justify-between">
           <View>
             <FormField
-              title={"Title"}
+              title={"Titulo"}
               value={title}
               handleChangeText={setTitle}
             />
 
             <FormField
-              title={"Message"}
+              title={"Mensaje"}
               value={message}
               handleChangeText={setMessage}
             />
