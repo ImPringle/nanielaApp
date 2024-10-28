@@ -56,7 +56,7 @@ const Issues = () => {
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
       <View className="flex flex-row justify-between items-center mb-1">
-        <Text className="font-bold text-3xl ">Tareas</Text>
+        <Text className="font-bold text-3xl ">Tasks</Text>
         <TouchableOpacity
           onPress={() => {
             router.push("/issues/newTask");

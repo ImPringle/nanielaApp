@@ -3,9 +3,9 @@ import { LOCALHOST } from "@env";
 
 const API_URL = `http://${LOCALHOST}:5001/api/maintenance`;
 
-export const completeIssue = async (id) => {
+export const completeIssue = async (id, by) => {
   try {
-    const response = await axios.put(`${API_URL}/complete/${id}`);
+    const response = await axios.put(`${API_URL}/complete/${id}/${by}`);
     return response.data;
   } catch (error) {
     console.error("Error completing issue:", error.response.data.message);
@@ -17,7 +17,10 @@ export const postMaintenance = async (
   machineNumber,
   type,
   action,
-  status
+  status,
+  createdBy,
+  createdById,
+  solvedBy,
 ) => {
   try {
     const response = await axios.post(`${API_URL}/create`, {
@@ -26,6 +29,9 @@ export const postMaintenance = async (
       type,
       action,
       status,
+      createdBy,
+      createdById,
+      solvedBy,
     });
     return response.data;
   } catch (error) {

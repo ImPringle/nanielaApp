@@ -61,13 +61,13 @@ const TabsLayout = () => {
         <Tabs.Screen
           name="maintenance"
           options={{
-            title: "Maintenance",
+            title: "Forms",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={faScrewdriverWrench}
                 color={color}
-                name={"Mantenimientos"}
+                name={"Forms"}
                 focused={focused}
               />
             ),
@@ -82,7 +82,7 @@ const TabsLayout = () => {
               <TabIcon
                 icon={faBell}
                 color={color}
-                name={"Actividad"}
+                name={"Activity"}
                 focused={focused}
               />
             ),
@@ -106,13 +106,13 @@ const TabsLayout = () => {
         <Tabs.Screen
           name="issues"
           options={{
-            title: "Issues",
+            title: "Tasks",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={faExclamationTriangle}
                 color={color}
-                name={"Tareas"}
+                name={"Tasks"}
                 focused={focused}
               />
             ),
@@ -128,7 +128,7 @@ const TabsLayout = () => {
               <TabIcon
                 icon={faUser}
                 color={color}
-                name={"Perfil"}
+                name={"Profile"}
                 focused={focused}
               />
             ),

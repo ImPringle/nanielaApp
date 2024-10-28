@@ -5,13 +5,31 @@ import { Stack, router, useLocalSearchParams } from "expo-router";
 import { completeIssue, getMaintenanceById } from "../../api/maintenance";
 import { getNotificationById, postNotification } from "../../api/notification";
 import CustomButton from "../../components/CustomButton";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import moment from "moment";
 import QRCode from "react-native-qrcode-svg";
 
 import { LOCALHOST } from "@env";
 
 const NotificationDetail = () => {
+
+  const [userId, setUserId] = useState("");
+  const fetchUser = async () => {
+    try {
+      const value = await AsyncStorage.getItem("user");
+      if (value !== null) {
+        console.log("USER:", value);
+        const parsedValue = JSON.parse(value);
+        setUserId(parsedValue);
+      }
+    } catch (error) {
+      console.log("error fetching user: " + error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
   const { id } = useLocalSearchParams();
   const [notiData, setNotiData] = useState([]);
 
@@ -56,7 +74,7 @@ const NotificationDetail = () => {
 
   const handleComplete = async () => {
     const eventId = eventData._id;
-    const response = await completeIssue(eventId);
+    const response = await completeIssue(eventId, userId.username);
     if (response) {
       console.log("issue completed");
       const title =
@@ -66,9 +84,9 @@ const NotificationDetail = () => {
         " (" +
         eventData.type +
         ")";
-      const message = "Se realizo " + eventData.action + " con exito.";
+      const message = "Se realizó " + eventData.action + " con éxito.";
 
-      const res = await postNotification(title, message, "completed", eventId);
+      const res = await postNotification(title, message, "completed", eventId, notiData.createdBy, notiData.createdById, userId.username);
       console.log(res);
       router.back();
     } else {
@@ -79,7 +97,7 @@ const NotificationDetail = () => {
   return (
     <SafeAreaView edges={["right", "left"]} className="">
       <Stack.Screen
-        options={{ headerTitle: `Detalles`, headerBackTitle: "Atras" }}
+        options={{ headerTitle: `Details`, headerBackTitle: "Back" }}
       />
       <ScrollView contentContainerStyle={{ height: "100%" }} className="">
         <View className="p-5">
@@ -88,7 +106,15 @@ const NotificationDetail = () => {
           <Text className="text-xl mb-1 ">
             En: {moment(notiData.createdAt).format("YYYY-MM-DD")}
           </Text>
-
+          <Text className="text-xl mb-1 ">
+            Creator: {notiData.createdBy != null && notiData.createdBy}
+          </Text>
+          <Text className="text-xl mb-1 ">
+            Creator iD: {notiData.createdById != null && notiData.createdById}
+          </Text>
+          <Text className="text-xl mb-1 ">
+            Solved By: {notiData.solvedBy != null && notiData.solvedBy}
+          </Text>
           <View className="flex flex-row w-full justify-center">
             <QRCode
               value={`http://${LOCALHOST}:5001/api/maintenance/get/${eventData._id}`}
@@ -96,7 +122,7 @@ const NotificationDetail = () => {
             />
           </View>
 
-          {eventData.status == "Pendiente" && (
+          {eventData.status == "Pending" && (
             <CustomButton
               title={"Completar"}
               containerStyles={"bg-primary w-full mt-5"}

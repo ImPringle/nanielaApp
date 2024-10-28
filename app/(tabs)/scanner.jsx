@@ -47,7 +47,7 @@ const Scanner = () => {
     return (
       <SafeAreaView edges={["right", "left", "top"]} className="p-5 ">
         <View className="flex h-full justify-center items-center">
-          <Text>Necesitas dar permisos para usar la camara</Text>
+          <Text>Activa los permisos para usar la cámara</Text>
           <Button onPress={requestPermission} title="Dar permisos" />
         </View>
       </SafeAreaView>
@@ -56,7 +56,7 @@ const Scanner = () => {
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
       <View className=" flex flex-row justify-between items-center">
-        <Text className="font-bold text-3xl mb-1">Escaner QR</Text>
+        <Text className="font-bold text-3xl mb-1">Scanner QR</Text>
         <TouchableOpacity
           onPress={() => {
             if (camActive) {
@@ -67,7 +67,7 @@ const Scanner = () => {
           }}
         >
           <Text className="text-xl text-primary">
-            {camActive ? "Apagar" : "Encender"}
+            {camActive ? "Off" : "On"}
           </Text>
         </TouchableOpacity>
       </View>
@@ -112,11 +112,11 @@ const Scanner = () => {
                 {data ? (
                   <View>
                     <View className="flex flex-row justify-between">
-                      <Text>Tipo:</Text>
+                      <Text>Type:</Text>
                       <Text>{data.type}</Text>
                     </View>
                     <View className="flex flex-row justify-between">
-                      <Text>Numero:</Text>
+                      <Text>N°:</Text>
                       <Text>{data.machineNumber}</Text>
                     </View>
                     <View className="flex flex-row justify-between">
@@ -149,9 +149,17 @@ const Scanner = () => {
                 )}
               </View>
               <CustomButton
-                title={"Hacer mantenimiento"}
+                title={"Forms"}
                 containerStyles={"bg-primary w-full mt-5"}
-                handelPress={() => {}}
+                
+                    
+                handelPress={() => {
+                  setQrModalIsVisible(false);
+
+                  console.log("data enviada:", data)
+                  router.replace(`/maintenance?data=${encodeURIComponent(JSON.stringify(data))}`);
+                }}
+                
               />
             </View>
           </View>

@@ -30,7 +30,7 @@ const Profile = ({}) => {
   return (
     <SafeAreaView edges={["right", "left", "top", "bottom"]} className="p-5">
       <View className="flex flex-row justify-between">
-        <Text className="font-bold text-3xl mb-1">Perfil</Text>
+        <Text className="font-bold text-3xl mb-1">Profile</Text>
       </View>
       <ScrollView contentContainerStyle={{ height: "100%" }} className="">
         <View className="flex-col flex-1 justify-between items-center">
@@ -42,7 +42,7 @@ const Profile = ({}) => {
               />
             </View>
             <View className="w-full flex flex-row justify-between my-2 flex-wrap">
-              <Text className="font-bold text-xl flex-wrap">Nombre:</Text>
+              <Text className="font-bold text-xl flex-wrap">User:</Text>
 
               <Text className="text-xl text-gray-500 flex-wrap">
                 {userId.username}
@@ -52,13 +52,13 @@ const Profile = ({}) => {
             </View>
 
             <View className="w-full flex flex-row justify-between my-2 flex-wrap">
-              <Text className="font-bold text-xl flex-wrap">Correo:</Text>
+              <Text className="font-bold text-xl flex-wrap">E-mail:</Text>
               <Text className="text-xl text-gray-500 flex-wrap">
                 {userId.email}
               </Text>
             </View>
             <View className="w-full flex flex-row justify-between my-2 flex-wrap">
-              <Text className="font-bold text-xl flex-wrap">Permisos:</Text>
+              <Text className="font-bold text-xl flex-wrap">Rol:</Text>
               <Text className="text-xl text-gray-500 flex-wrap">
                 {userId.role}
               </Text>
@@ -66,7 +66,7 @@ const Profile = ({}) => {
           </View>
 
           <CustomButton
-            title={"Cerrar Sesion"}
+            title={"Log out"}
             containerStyles={"bg-white w-full"}
             textStyles={"text-red-500"}
             handelPress={() => {

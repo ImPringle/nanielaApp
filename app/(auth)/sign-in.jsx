@@ -32,14 +32,14 @@ const SignIn = () => {
           />
 
           <View className="flex flex-col justify-center w-full">
-            <Text className="font-bold text-2xl">Iniciar Sesion</Text>
+            <Text className="font-bold text-2xl">Log In</Text>
             <FormField
-              title={"Nombre de usuario"}
+              title={"Username"}
               otherStyles={""}
               handleChangeText={setUsername}
             />
             <FormField
-              title={"Contraseña"}
+              title={"Password"}
               otherStyles={"mt-2"}
               isPassword={true}
               handleChangeText={setPassword}
@@ -47,14 +47,14 @@ const SignIn = () => {
           </View>
           <View className="w-full flex flex-col items-center">
             <CustomButton
-              title={"Iniciar Sesion"}
+              title={"Log in"}
               containerStyles={"bg-primary w-full mt-5"}
               handelPress={handleLogin}
             />
             <View className="flex flex-row mt-4">
-              <Text className="">No tienes cuenta? </Text>
+              <Text className="">Dont have an account? </Text>
               <Link href={"/sign-up"} className="text-primary font-bold">
-                Crear una
+                Creat an account
               </Link>
             </View>
           </View>

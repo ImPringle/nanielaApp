@@ -78,7 +78,7 @@ const Activity = () => {
 
   return (
     <SafeAreaView edges={["right", "left", "top"]} className="p-5">
-      <Text className="font-bold text-3xl mb-1">Actividad</Text>
+      <Text className="font-bold text-3xl mb-1">Activity</Text>
       <View className="h-full">
         <FlatList
           data={activityData}

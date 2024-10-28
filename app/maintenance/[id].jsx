@@ -17,12 +17,12 @@ const MaintenanceDetails = () => {
     if (response) {
       const title =
         data.machine + " #" + data.machineNumber + " (" + data.type + ")";
-      const message = "Se realizo " + data.action + " correctamente!";
+      const message = "¡Se realizó " + data.action + " correctamente!";
       const status = "completed";
       postNotification(title, message, status);
       console.log("tdb");
     } else {
-      console.log("error xd");
+      console.log("error");
     }
   };
 
@@ -33,7 +33,7 @@ const MaintenanceDetails = () => {
       setData(maintData);
       console.log("done:", maintData);
     } else {
-      console.log("donent xd");
+      console.log("no");
     }
   };
   useEffect(() => {
@@ -45,9 +45,9 @@ const MaintenanceDetails = () => {
       <Stack.Screen options={{ headerTitle: `Details #${id}` }} />
       <ScrollView contentContainerStyle={{ height: "100%" }} className="">
         <Text className="font-bold text-3xl mb-1 m-5">Details {id}</Text>
-
+        
         <CustomButton
-          title={"Complete Issue"}
+          title={"Complete Task"}
           handelPress={() => {
             completingMaint();
           }}

@@ -21,12 +21,12 @@ const TaskDetails = () => {
   return (
     <SafeAreaView edges={["right", "left"]} className="">
       <Stack.Screen
-        options={{ headerTitle: `Detalles de tarea`, headerBackTitle: "Atras" }}
+        options={{ headerTitle: `Details`, headerBackTitle: "Back" }}
       />
       <ScrollView contentContainerStyle={{ height: "100%" }} className="">
         <View className="p-5">
           <CustomButton
-            title={"Completar"}
+            title={"Completed"}
             containerStyles={"bg-primary w-full mt-5"}
             handelPress={handleComplete}
           />

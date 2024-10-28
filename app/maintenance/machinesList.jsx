@@ -83,7 +83,7 @@ const MachineList = () => {
   return (
     <SafeAreaView edges={["right", "left", ""]} className="p-5 mb-8">
       <Stack.Screen
-        options={{ headerTitle: "Lista de Maquinas", headerBackTitle: "Atras" }}
+        options={{ headerTitle: "Machines", headerBackTitle: "Atras" }}
       />
       <View className=" h-full">
         <FlatList
@@ -115,11 +115,11 @@ const MachineList = () => {
                 {data ? (
                   <View>
                     <View className="flex flex-row justify-between">
-                      <Text>Tipo:</Text>
+                      <Text>Type:</Text>
                       <Text>{type}</Text>
                     </View>
                     <View className="flex flex-row justify-between">
-                      <Text>Numero:</Text>
+                      <Text>N°:</Text>
                       <Text>{machineNumber}</Text>
                     </View>
                     <View className="flex flex-row justify-between">

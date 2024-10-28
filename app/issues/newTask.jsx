@@ -27,25 +27,25 @@ const NewTask = () => {
   return (
     <SafeAreaView edges={["right", "left"]} className="">
       <Stack.Screen
-        options={{ headerTitle: `Nueva Tarea`, headerBackTitle: "Atras" }}
+        options={{ headerTitle: `New Task`, headerBackTitle: "Back" }}
       />
       <ScrollView contentContainerStyle={{ height: "100%" }} className=" p-5">
         <View className="flex flex-1 justify-between">
           <View>
             <FormField
-              title={"Titulo"}
+              title={"Title"}
               value={title}
               handleChangeText={setTitle}
             />
 
             <FormField
-              title={"Mensaje"}
+              title={"Description"}
               value={message}
               handleChangeText={setMessage}
             />
           </View>
           <CustomButton
-            title={"Crear tarea"}
+            title={"Upload"}
             containerStyles={"bg-primary w-full mt-5"}
             handelPress={submitForm}
           />

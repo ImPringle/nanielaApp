@@ -12,13 +12,18 @@ export const getNotifications = async () => {
   }
 };
 
-export const postNotification = async (title, message, status, eventId) => {
+export const postNotification = async (title, message, status, eventId, createdBy,
+  createdById,
+  solvedBy,) => {
   try {
     const response = await axios.post(`${API_URL}/create`, {
       title,
       message,
       status,
       eventId,
+      createdBy,
+      createdById,
+      solvedBy,
     });
     return response.data;
   } catch (error) {

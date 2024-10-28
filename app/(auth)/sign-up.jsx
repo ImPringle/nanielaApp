@@ -29,10 +29,10 @@ const SignUp = () => {
         console.log("User registered succesfullys");
         router.replace("/sign-in");
       } else {
-        console.log("Error de register");
+        console.log("Error de registro");
       }
     } else {
-      console.log("Las contrasenas no coinciden");
+      console.log("Las contraseñas no coinciden");
     }
   };
 
@@ -47,9 +47,9 @@ const SignUp = () => {
           />
 
           <View className="flex flex-col justify-center w-full">
-            <Text className="font-bold text-2xl">Registrar</Text>
+            <Text className="font-bold text-2xl">Sign Up</Text>
             <FormField
-              title={"Nombre de usuario"}
+              title={"Username"}
               otherStyles={""}
               handleChangeText={setUsername}
             />
@@ -59,13 +59,13 @@ const SignUp = () => {
               handleChangeText={setEmail}
             />
             <FormField
-              title={"Contraseña"}
+              title={"Password"}
               otherStyles={"mt-2"}
               isPassword={true}
               handleChangeText={setPassword}
             />
             <FormField
-              title={"Confirmar contraseña"}
+              title={"Confirm password"}
               otherStyles={"mt-2"}
               isPassword={true}
               handleChangeText={setPasswordC}
@@ -73,14 +73,14 @@ const SignUp = () => {
           </View>
           <View className="w-full flex flex-col items-center">
             <CustomButton
-              title={"Registrar"}
+              title={"Sign Up"}
               containerStyles={"bg-primary w-full mt-5"}
               handelPress={handleRegister}
             />
             <View className="flex flex-row mt-4">
-              <Text className="">Ya tienes una cuenta? </Text>
+              <Text className="">Already have an account? </Text>
               <Link href={"/sign-in"} className="text-primary font-bold">
-                Inicia sesion
+                Login to account
               </Link>
             </View>
           </View>

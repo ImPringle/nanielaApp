@@ -28,9 +28,9 @@ export default function App() {
             resizeMode="contain"
           />
           <Text className="font-bold text-3xl">QR Service</Text>
-          <Text className="font-bold text-xl text-gray-500">¡Bienvenido!</Text>
+          <Text className="font-bold text-xl text-gray-500">Welcome</Text>
           <CustomButton
-            title={"Continuar"}
+            title={"Let's go"}
             containerStyles={"bg-primary w-full mt-5"}
             handelPress={() => {
               router.replace("/sign-in");
